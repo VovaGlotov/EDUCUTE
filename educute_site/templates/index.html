@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDUCUTE — Онлайн школа ОГЭ/ЕГЭ</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="container topbar-inner">
+        <div class="socials">
+            <a href="https://t.me/educute_school" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
+            <a href="https://www.instagram.com/educutte?igsh=MWFwODdrcDNzYzRsMQ%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://youtube.com/%40educute_school?si=RhMxcwa0lHmNTQy6" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+
+        <a href="#top" class="brand text-brand" aria-label="Educute">
+            <span class="brand-text">EDUCUTE</span>
+        </a>
+    </div>
+</header>
+
+<header class="main-header" id="top">
+    <div class="container main-header-inner">
+        <nav class="nav">
+            <a href="#advantages">Преимущества</a>
+            <a href="#ribbon">Направления</a>
+            <a href="#prices">Тарифы</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#faq">Вопросы</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="cart-btn" id="openCartBtn" type="button" aria-label="Открыть корзину">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <a href="#lead-form" class="btn btn-dark header-btn">Записаться</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">Онлайн школа ОГЭ/ЕГЭ</div>
+                <h1>С нами ты сдашь на высокий балл и поступишь в университет мечты</h1>
+                <p class="hero-text">
+                    Подготовка без хаоса, скуки и вечной паники. Понятные объяснения,
+                    сильные преподаватели и удобный формат занятий с любого устройства.
+                </p>
+
+                <div class="hero-tags">
+                    <span>Высокие баллы</span>
+                    <span>Понятные уроки</span>
+                    <span>Поддержка преподавателя</span>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#prices" class="btn btn-dark">Выбрать тариф</a>
+                    <a href="#faq" class="btn btn-light">Частые вопросы</a>
+                </div>
+            </div>
+
+            <div class="hero-card" id="lead-form">
+                <div class="hero-card-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1400&auto=format&fit=crop"
+                        alt="Подготовка к экзаменам"
+                    >
+                </div>
+
+                <div class="hero-form-wrap">
+                    <h2>Оставить заявку</h2>
+                    <p>Менеджер поможет подобрать предмет, преподавателя и удобный график занятий.</p>
+
+                    {% if success %}
+                    <div class="success-message">
+                        Спасибо{% if user_name %}, {{ user_name }}{% endif %}! Заявка отправлена.
+                    </div>
+                    {% endif %}
+
+                    <form action="/submit" method="POST" class="main-form">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Ваш Email" required>
+                        <input type="tel" name="phone" placeholder="Номер телефона" required>
+                        <button type="submit" class="btn btn-dark btn-full">Оформить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages section" id="advantages">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">Почему выбирают нас</span>
+                <h2>Сильная подготовка в удобном и красивом формате</h2>
+            </div>
+
+            <div class="advantages-grid">
+                <article class="adv-card">
+                    <div class="adv-image">
+                        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=900&auto=format&fit=crop" alt="Результат">
+                    </div>
+                    <div class="adv-overlay">
+                        <h3>Гарантия результата</h3>
+                        <p>Поднимем уровень знаний и поможем прийти к высоким баллам шаг за шагом.</p>
+                    </div>
+                </article>
+
+                <article class="adv-card">
+                    <div class="adv-image">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop" alt="Обратная связь">
+                    </div>
+                    <div class="adv-overlay">
+                        <h3>Обратная связь</h3>
+                        <p>Преподаватели всегда на связи и помогают разобраться в сложных темах.</p>
+                    </div>
+                </article>
+
+                <article class="adv-card">
+                    <div class="adv-image">
+                        <img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=900&auto=format&fit=crop" alt="Педагог">
+                    </div>
+                    <div class="adv-overlay">
+                        <h3>Педагог под любые цели</h3>
+                        <p>Подберем преподавателя под твой уровень, предмет и нужный формат.</p>
+                    </div>
+                </article>
+
+                <article class="adv-card">
+                    <div class="adv-image">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=900&auto=format&fit=crop" alt="Подход">
+                    </div>
+                    <div class="adv-overlay">
+                        <h3>Нетривиальный подход</h3>
+                        <p>Объясняем сложное простым языком и делаем занятия живыми и интересными.</p>
+                    </div>
+                </article>
+
+                <article class="adv-card adv-card-count">
+                    <div class="adv-image">
+                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=900&auto=format&fit=crop" alt="Ученики">
+                    </div>
+                    <div class="adv-overlay">
+                        <h3>Более 400 учеников</h3>
+                        <p>Именно столько ребят уже достигли своих целей вместе с нами.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="ribbon section" id="ribbon">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">Лента направлений</span>
+                <h2>Популярные форматы и направления подготовки</h2>
+            </div>
+
+            <div class="ribbon-scroll">
+                <article class="ribbon-card">
+                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop" alt="Русский язык">
+                    <div class="ribbon-card-body">
+                        <h3>Русский язык</h3>
+                        <p>ОГЭ и ЕГЭ с понятной структурой и регулярной практикой.</p>
+                    </div>
+                </article>
+
+                <article class="ribbon-card">
+                    <img src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?q=80&w=1200&auto=format&fit=crop" alt="Математика">
+                    <div class="ribbon-card-body">
+                        <h3>Математика</h3>
+                        <p>База и профиль с разбором ошибок и пошаговыми решениями.</p>
+                    </div>
+                </article>
+
+                <article class="ribbon-card">
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1200&auto=format&fit=crop" alt="Обществознание">
+                    <div class="ribbon-card-body">
+                        <h3>Обществознание</h3>
+                        <p>Теория без перегруза и удобная подготовка к реальным заданиям.</p>
+                    </div>
+                </article>
+
+                <article class="ribbon-card">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=1200&auto=format&fit=crop" alt="Английский язык">
+                    <div class="ribbon-card-body">
+                        <h3>Английский язык</h3>
+                        <p>Грамматика, лексика, письмо и устная часть в одном темпе.</p>
+                    </div>
+                </article>
+
+                <article class="ribbon-card">
+                    <img src="https://images.unsplash.com/photo-1511629091441-ee46146481b6?q=80&w=1200&auto=format&fit=crop" alt="Физика">
+                    <div class="ribbon-card-body">
+                        <h3>Физика</h3>
+                        <p>Формулы, логика и задачи с реальным пониманием темы.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="countdown section">
+        <div class="container">
+            <div class="countdown-box">
+                <span class="section-label">Обратный отсчет до ЕГЭ</span>
+                <h2>Чем раньше начнешь, тем спокойнее будет на экзамене</h2>
+
+                <div class="count-grid">
+                    <div class="count-item">
+                        <strong id="days">0</strong>
+                        <span>Дней</span>
+                    </div>
+                    <div class="count-item">
+                        <strong id="hours">0</strong>
+                        <span>Часов</span>
+                    </div>
+                    <div class="count-item">
+                        <strong id="minutes">0</strong>
+                        <span>Минут</span>
+                    </div>
+                    <div class="count-item">
+                        <strong id="seconds">0</strong>
+                        <span>Секунд</span>
+                    </div>
+                </div>
+
+                <p class="count-note">
+                    Начни подготовку заранее, чтобы подойти к экзамену уверенно и без лишнего стресса.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="prices section" id="prices">
+        <div class="container">
+            <div class="section-head center">
+                <span class="section-label">Тарифы</span>
+                <h2>Выбери пакет занятий</h2>
+            </div>
+
+            <div class="prices-grid">
+                <article class="price-card" data-id="first-step" data-name="Первый шаг" data-price="1500">
+                    <span class="price-tag">Старт</span>
+                    <h3>Первый шаг</h3>
+                    <p>1 индивидуальное занятие по выбранному предмету.</p>
+
+                    <div class="price-bottom">
+                        <div class="price-value">1500 ₽</div>
+                        <div class="old-price old-price-empty">.</div>
+                        <button class="btn btn-dark btn-full buy-btn" type="button">Купить</button>
+                    </div>
+                </article>
+
+                <article class="price-card featured" data-id="start-impulse" data-name="Стартовый импульс" data-price="5690">
+                    <span class="price-tag">Популярный</span>
+                    <h3>Стартовый импульс</h3>
+                    <p>Пакет из 4 индивидуальных занятий по одному предмету.</p>
+
+                    <div class="price-bottom">
+                        <div class="price-value">5690 ₽</div>
+                        <div class="old-price">6000 ₽</div>
+                        <button class="btn btn-dark btn-full buy-btn" type="button">Купить</button>
+                    </div>
+                </article>
+
+                <article class="price-card" data-id="in-flow" data-name="В потоке" data-price="10990">
+                    <span class="price-tag">Интенсив</span>
+                    <h3>В потоке</h3>
+                    <p>Пакет из 8 индивидуальных занятий для уверенного прогресса.</p>
+
+                    <div class="price-bottom">
+                        <div class="price-value">10990 ₽</div>
+                        <div class="old-price">12000 ₽</div>
+                        <button class="btn btn-dark btn-full buy-btn" type="button">Купить</button>
+                    </div>
+                </article>
+
+                <article class="price-card" data-id="wonderkind" data-name="Вундеркинд" data-price="15990">
+                    <span class="price-tag">Максимум</span>
+                    <h3>Вундеркинд</h3>
+                    <p>Пакет из 12 индивидуальных занятий с глубокой проработкой тем.</p>
+
+                    <div class="price-bottom">
+                        <div class="price-value">15990 ₽</div>
+                        <div class="old-price">18000 ₽</div>
+                        <button class="btn btn-dark btn-full buy-btn" type="button">Купить</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="callback section">
+        <div class="container callback-card">
+            <div class="callback-text">
+                <span class="section-label">Обратный звонок</span>
+                <h2>Оставь заявку и получи скидку 50% на первый урок</h2>
+                <p>Наш менеджер свяжется с тобой и подберет удобный формат обучения.</p>
+            </div>
+
+            <form action="/submit" method="POST" class="callback-form">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="email" name="email" placeholder="Ваш Email" required>
+                <input type="tel" name="phone" placeholder="Номер телефона" required>
+                <button type="submit" class="btn btn-dark btn-full">Отправить</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="reviews section" id="reviews">
+        <div class="container">
+            <div class="section-head center reviews-head">
+                <h2><span class="dark-text">400+ ребят уже</span> <span class="accent-text">получили высокие баллы</span></h2>
+                <p class="reviews-subtitle">Реальные истории наших учеников</p>
+            </div>
+
+            <div class="reviews-grid">
+                <article class="review-card">
+                    <div class="review-badge">93 балла</div>
+                    <h3>Егор</h3>
+                    <div class="review-meta">МАТЕМАТИКА • ОГЭ</div>
+                    <p>Занимался всего несколько месяцев, а уже сдал школьную диагностику на высокий результат и стал увереннее в решении задач.</p>
+                    <div class="review-line"></div>
+                    <div class="review-stats">
+                        <div><span>БЫЛО</span><strong>3</strong></div>
+                        <div><span>СТАЛО</span><strong>5</strong></div>
+                    </div>
+                </article>
+
+                <article class="review-card featured-review">
+                    <div class="review-badge">ОГЭ на 5</div>
+                    <h3>Дарья</h3>
+                    <div class="review-meta">МАТЕМАТИКА • ОГЭ</div>
+                    <p>За несколько месяцев средний балл вырос, а в учебе появилась уверенность. Подготовка стала спокойной и понятной.</p>
+                    <div class="review-line"></div>
+                    <div class="review-stats">
+                        <div><span>БЫЛО</span><strong>3.0</strong></div>
+                        <div><span>СТАЛО</span><strong>4.5</strong></div>
+                    </div>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-badge">80+ баллов</div>
+                    <h3>Анна</h3>
+                    <div class="review-meta">РУССКИЙ ЯЗЫК • ЕГЭ</div>
+                    <p>Занятия были интересными и эффективными. Преподаватели всегда были на связи и помогали с любыми вопросами.</p>
+                    <div class="review-line"></div>
+                    <div class="review-stats single">
+                        <div><span>БАЛЛ ЕГЭ</span><strong>85</strong></div>
+                    </div>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-badge">МЦКО на 5</div>
+                    <h3>София</h3>
+                    <div class="review-meta">МАТЕМАТИКА • 8 КЛАСС</div>
+                    <p>За год занятий стало легче понимать темы, закрылись пробелы, и уверенность перед контрольными сильно выросла.</p>
+                    <div class="review-line"></div>
+                    <div class="review-stats single">
+                        <div><span>МЦКО</span><strong>5</strong></div>
+                    </div>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-badge">90+ баллов</div>
+                    <h3>Игорь</h3>
+                    <div class="review-meta">ФИЗИКА • ЕГЭ</div>
+                    <p>Ребенок начал лучше понимать предмет, а результаты экзаменов это подтвердили. Спасибо за сильную подготовку.</p>
+                    <div class="review-line"></div>
+                    <div class="review-stats single">
+                        <div><span>БАЛЛ ЕГЭ</span><strong>92</strong></div>
+                    </div>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-badge">ТОП ШКОЛА</div>
+                    <h3>Александр</h3>
+                    <div class="review-meta">ОБЩАЯ УСПЕВАЕМОСТЬ</div>
+                    <p>Сын стал более уверенным и заинтересованным в учебе. Было видно, что преподаватели действительно вовлечены.</p>
+                    <div class="review-line"></div>
+                    <div class="review-stats single">
+                        <div><span>РЕЗУЛЬТАТ</span><strong>5.0</strong></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq section" id="faq">
+        <div class="container faq-wrap">
+            <div class="section-head center">
+                <span class="section-label">FAQ</span>
+                <h2>Часто задаваемые вопросы</h2>
+            </div>
+
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Какие предметы можно изучать в вашей онлайн-школе?</summary>
+                    <p>Мы помогаем готовиться к основным школьным предметам для ОГЭ и ЕГЭ: русский язык, математика, обществознание, английский язык, физика и другим направлениям.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Как проходит обучение в вашей онлайн-школе?</summary>
+                    <p>Занятия проходят онлайн в удобное время. Преподаватель объясняет тему, дает практику, разбирает ошибки и помогает двигаться по программе шаг за шагом.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Кто преподает в вашей школе? Какая квалификация у специалистов?</summary>
+                    <p>С учениками работают преподаватели, которые умеют объяснять сложные темы простым языком и выстраивать подготовку под конкретную цель.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Как организована подготовка к ОГЭ/ЕГЭ?</summary>
+                    <p>Подготовка строится системно: от оценки текущего уровня до плана занятий, регулярной практики и разбора экзаменационных заданий.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Можно ли заниматься в удобное время?</summary>
+                    <p>Да, график подбирается индивидуально. Мы стараемся сделать обучение удобным для ученика и родителей.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Есть ли поддержка для родителей?</summary>
+                    <p>Да, при необходимости можно получать обратную связь по прогрессу, посещаемости и общему ходу подготовки.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Какие у вас тарифы и пакеты занятий?</summary>
+                    <p>У нас есть разовые занятия и пакетные предложения на 4, 8 и 12 уроков. Это позволяет выбрать формат под бюджет и цели.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Как оплатить занятия?</summary>
+                    <p>После заявки менеджер связывается с тобой и объясняет удобный способ оплаты и условия выбранного тарифа.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>А если курс не подойдет?</summary>
+                    <p>Сначала мы помогаем подобрать формат максимально точно. Если нужно, можно скорректировать подход, преподавателя или расписание.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Нужно ли покупать что-то дополнительно?</summary>
+                    <p>Обычно нет. Основные материалы для занятий и подготовки даются в процессе обучения.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer footer-dark">
+    <div class="container footer-dark-inner">
+        <div class="footer-dark-left">
+            <div class="footer-dark-brand">EDUCUTE</div>
+            <div class="footer-dark-copy">© Все права защищены</div>
+        </div>
+
+        <div class="footer-dark-right">
+            <a href="https://t.me/educute_school" target="_blank" rel="noopener noreferrer">Telegram</a>
+            <a href="https://www.instagram.com/educutte?igsh=MWFwODdrcDNzYzRsMQ%3D%3D" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://youtube.com/%40educute_school?si=RhMxcwa0lHmNTQy6" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+    </div>
+</footer>
+
+<div class="cart-modal" id="cartModal" aria-hidden="true">
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <div class="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+        <button class="cart-close" id="closeCartBtn" type="button" aria-label="Закрыть">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <h2 id="cartTitle">Ваш заказ:</h2>
+
+        <div class="cart-items" id="cartItems"></div>
+
+        <div class="cart-empty" id="cartEmpty">
+            В корзине пока ничего нет.
+        </div>
+
+        <form class="cart-checkout-form" action="/checkout" method="POST">
+            <label>
+                <span>Ваше Имя</span>
+                <input type="text" name="name" required>
+            </label>
+
+            <label>
+                <span>Ваш Email</span>
+                <input type="email" name="email" required>
+            </label>
+
+            <label>
+                <span>Номер телефона</span>
+                <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+            </label>
+
+            <input type="hidden" name="cart_items" id="cartItemsInput">
+            <input type="hidden" name="cart_total" id="cartTotalInput">
+
+            <div class="cart-total">
+                Итоговая сумма:
+                <strong id="cartFinalPrice">0 ₽</strong>
+            </div>
+
+            <button class="btn btn-dark btn-full" type="submit">Оформить заказ</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const examDate = new Date("2026-06-01T00:00:00");
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = examDate - now;
+
+        if (diff <= 0) {
+            document.getElementById("days").textContent = "0";
+            document.getElementById("hours").textContent = "0";
+            document.getElementById("minutes").textContent = "0";
+            document.getElementById("seconds").textContent = "0";
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const cards = document.querySelectorAll(".price-card");
+    cards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+            cards.forEach(c => c.classList.remove("featured"));
+            card.classList.add("featured");
+        });
+    });
+
+    const cartModal = document.getElementById("cartModal");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const openCartBtn = document.getElementById("openCartBtn");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const buyButtons = document.querySelectorAll(".buy-btn");
+
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartEmptyEl = document.getElementById("cartEmpty");
+    const cartFinalPriceEl = document.getElementById("cartFinalPrice");
+    const cartCountEl = document.getElementById("cartCount");
+    const cartItemsInput = document.getElementById("cartItemsInput");
+    const cartTotalInput = document.getElementById("cartTotalInput");
+
+    let cart = [];
+
+    function formatPrice(value) {
+        return new Intl.NumberFormat("ru-RU").format(value) + " ₽";
+    }
+
+    function getCartCount() {
+        return cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+
+    function getCartTotal() {
+        return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    }
+
+    function saveCart() {
+        localStorage.setItem("educute_cart", JSON.stringify(cart));
+    }
+
+    function loadCart() {
+        const saved = localStorage.getItem("educute_cart");
+        if (saved) {
+            try {
+                cart = JSON.parse(saved);
+            } catch {
+                cart = [];
+            }
+        }
+    }
+
+    function addToCart(product) {
+        const existing = cart.find(item => item.id === product.id);
+
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            cart.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                qty: 1
+            });
+        }
+
+        saveCart();
+        renderCart();
+        openCart();
+    }
+
+    function increaseQty(id) {
+        const item = cart.find(i => i.id === id);
+        if (!item) return;
+
+        item.qty += 1;
+        saveCart();
+        renderCart();
+    }
+
+    function decreaseQty(id) {
+        const item = cart.find(i => i.id === id);
+        if (!item) return;
+
+        item.qty -= 1;
+
+        if (item.qty <= 0) {
+            cart = cart.filter(i => i.id !== id);
+        }
+
+        saveCart();
+        renderCart();
+    }
+
+    function removeItem(id) {
+        cart = cart.filter(i => i.id !== id);
+        saveCart();
+        renderCart();
+    }
+
+    function renderCart() {
+        cartItemsEl.innerHTML = "";
+
+        if (cart.length === 0) {
+            cartEmptyEl.style.display = "block";
+        } else {
+            cartEmptyEl.style.display = "none";
+        }
+
+        cart.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "cart-item";
+
+            row.innerHTML = `
+                <div class="cart-item-row">
+                    <div class="cart-thumb">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div class="cart-item-main">
+                        <div class="cart-item-name">${item.name}</div>
+
+                        <div class="cart-qty-controls">
+                            <button type="button" class="qty-btn" data-action="minus" data-id="${item.id}">−</button>
+                            <span>${item.qty}</span>
+                            <button type="button" class="qty-btn" data-action="plus" data-id="${item.id}">+</button>
+                        </div>
+                    </div>
+
+                    <div class="cart-item-side">
+                        <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
+                        <button type="button" class="cart-remove" data-action="remove" data-id="${item.id}">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            cartItemsEl.appendChild(row);
+        });
+
+        const total = getCartTotal();
+        cartFinalPriceEl.textContent = formatPrice(total);
+        cartCountEl.textContent = getCartCount();
+
+        const itemsText = cart.length
+            ? cart.map(item => `• ${item.name} × ${item.qty} — ${formatPrice(item.price * item.qty)}`).join("\n")
+            : "Корзина пуста";
+
+        cartItemsInput.value = itemsText;
+        cartTotalInput.value = formatPrice(total);
+    }
+
+    cartItemsEl.addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        if (!button) return;
+
+        const action = button.dataset.action;
+        const id = button.dataset.id;
+
+        if (action === "plus") increaseQty(id);
+        if (action === "minus") decreaseQty(id);
+        if (action === "remove") removeItem(id);
+    });
+
+    buyButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const card = button.closest(".price-card");
+
+            addToCart({
+                id: card.dataset.id,
+                name: card.dataset.name,
+                price: Number(card.dataset.price)
+            });
+        });
+    });
+
+    function openCart() {
+        cartModal.classList.add("active");
+        cartModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+    }
+
+    function closeCart() {
+        cartModal.classList.remove("active");
+        cartModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+    }
+
+    openCartBtn.addEventListener("click", openCart);
+    closeCartBtn.addEventListener("click", closeCart);
+    cartOverlay.addEventListener("click", closeCart);
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeCart();
+        }
+    });
+
+    loadCart();
+    renderCart();
+</script>
+
+</body>
+</html>
